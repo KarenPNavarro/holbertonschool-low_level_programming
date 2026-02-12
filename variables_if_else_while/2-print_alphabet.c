@@ -1,8 +1,9 @@
 #include <stdio.h>
 /**
- * Printing the alphabet using C
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
  */
-
 int main(void)
 {
 	char c = 'a';
