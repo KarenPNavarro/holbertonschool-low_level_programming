@@ -2,7 +2,9 @@
 
 /**
 * _strncpy - copies a string using at most n bytes from src
-*
+* @dest: pointer to the destination buffer
+* @src: pointer to the source string
+* @n: maximum number of bytes to copy
 *
 * Return: pointer to dest
 */
