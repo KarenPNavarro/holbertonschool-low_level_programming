@@ -9,7 +9,7 @@
 int _atoi(char *s)
 {
 int sign;
-int result;
+unsigned int result;
 int found;
 
 sign = 1;
@@ -29,5 +29,7 @@ else if (found == 1)
 break;
 s++;
 }
-return (sign *result);
+if (sign == -1)
+return (-(int)result);
+return ((int)result);
 }
