@@ -14,30 +14,31 @@ void print_all(const char * const format, ...)
 	va_list args;
 	unsigned int i;
 	char *str;
-	char *separator;
+	char *sep;
+	int printed;
 
 	va_start(args, format);
-
 	i = 0;
-	separator = "";
-
+	sep = "";
 	while (format && format[i])
 	{
+		printed = 1;
 		str = NULL;
 		if (format[i] == 'c')
-			printf("%s%c", separator, va_arg(args, int));
+			printf("%s%c", sep, va_arg(args, int));
 		else if (format[i] == 'i')
-			printf("%s%i", separator, va_arg(args, int));
+			printf("%s%d", sep, va_arg(args, int));
 		else if (format[i] == 'f')
-			printf("%s%f", separator, va_arg(args, double));
+			printf("%s%f", sep, va_arg(args, double));
 		else if (format[i] == 's')
 		{
 			str = va_arg(args, char *);
-			printf("%s%s", separator, str ? str : "(nil)");
+			printf("%s%s", sep, str ? str : "(nil)");
 		}
-		if (str != NULL || format[i] == 'c' ||
-			format[i] == 'i' || format[i] == 'f')
-			separator = ", ";
+		else
+			printed = 0;
+		if (printed)
+			sep = ", ";
 		i++;
 	}
 	va_end(args);
