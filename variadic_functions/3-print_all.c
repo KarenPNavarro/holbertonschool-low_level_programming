@@ -15,36 +15,33 @@ void print_all(const char * const format, ...)
 	unsigned int i;
 	char *str;
 	char *separator;
+	char *valid;
 
 	va_start(args, format);
 
 	i = 0;
 	separator = "";
+	valid = "cifs";
+
 	while (format && format[i])
 	{
-		if (format[i] == 'c')
-		{
+		str = NULL;
+		if (format[i] == valid[0])
 			printf("%s%c", separator, va_arg(args, int));
-			separator = ", ";
-		}
-		if (format[i] == 'i')
-		{
-			printf("%s%d", separator, va_arg(args, int));
-			separator = ", ";
-		}
-		if (format[i] == 'f')
-		{
+		else if (format[i] == valid[1])
+			printf("%s%i", separator, va_arg(args, int));
+		else if (format[i] == valid[2])
 			printf("%s%f", separator, va_arg(args, double));
-			separator = ", ";
-		}
-		if (format[i] == 's')
+		else if (format[i] == valid[3])
 		{
 			str = va_arg(args, char *);
 			if (str == NULL)
 				str = "(nil)";
 			printf("%s%s", separator, str);
-			separator = ", ";
 		}
+		if (format[i] == valid[0] || format[i] == valid[1] ||
+			format[i] == valid[2] || format[i] == valid[3])
+			separator = ", ";
 		i++;
 	}
 	va_end(args);
