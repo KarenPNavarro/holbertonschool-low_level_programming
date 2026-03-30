@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * close_fd - closes a file descriptor and handles error
